@@ -1,7 +1,7 @@
 # Example workflow
 name: Format
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
 
@@ -12,4 +12,4 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--aosp --replace"
-          
+          commitMessage: "Format : Google Java Format"
