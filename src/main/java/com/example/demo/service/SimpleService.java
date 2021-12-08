@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 public class SimpleService {
 
     public void setEvenNumber(int number) {
@@ -13,30 +12,6 @@ public class SimpleService {
 
         for (int i = 0; i < 5; i++) {}
 
-        for (int i = 0; i < 5; i++) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-        }
+        for (int i = 0; i < 5; i++) {}
     }
 }
