@@ -21,7 +21,7 @@ jobs:
           distribution: 'adopt'
 
       - name: cache-workflow
-      - uses: JooHyukKim/github_actions_sample/.github/actions/
+      - uses: JooHyukKim/github_actions_sample/.github/actions/cache-build-gradle.yml
 
       - name: Start Logging
         run: echo Gradle Build Test Start
