@@ -1,4 +1,4 @@
-name: Unit Test Gradle
+name: Unit Test
 
 on: [ push, pull_request ]
 
@@ -14,22 +14,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          cache: gradle
 
-      - name: Cache .gradle/wrapper
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-wrapper-
-
-      - name: Cache .gradle/caches
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
-        - name: Start Logging
+      - name: Start Logging
         run: echo Gradle Build Test Start
 
       - name: Grant execute permission for gradlew
