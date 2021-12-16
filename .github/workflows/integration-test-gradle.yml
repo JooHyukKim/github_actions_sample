@@ -20,14 +20,25 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: cache-workflow
-      - uses: JooHyukKim/github_actions_sample/.github/actions/cache-build-gradle.yml
+      - name: Cache .gradle/caches
+      - uses: actions/cache@v1
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: ${{ runner.os }}-gradle-
 
-      - name: Start Logging
-        run: echo Gradle Build Test Start
+      - name: Cache .gradle/wrapper
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle-wrapper-
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        - name: Start Logging
+          run: echo Gradle Build Test Start
 
-      - name: Test with Gradle
-        run: ./gradlew --info test
+        - name: Grant execute permission for gradlew
+          run: chmod +x gradlew
+
+        - name: Test with Gradle
+          run: ./gradlew --info test
