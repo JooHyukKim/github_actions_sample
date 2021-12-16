@@ -9,6 +9,6 @@ class SimpleServiceTest {
 
     @Test
     public void setEvenNumberTest() {
-        simpleService.setEvenNumber(4);
+        simpleService.setEvenNumber(6);
     }
 }
