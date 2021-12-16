@@ -42,10 +42,3 @@ jobs:
 
       - name: Test with Gradle
         run: ./gradlew --info test
-
-      #      추후 테스트 결과 여부를 리포트 형식으로 보기 위해 추가
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: ${{ always() }}
-        with:
-          files: build/test-results/**/*.xml
