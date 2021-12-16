@@ -1,9 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Gradle Test
+name: Gradle Unit Test
 
 on: [ push, pull_request ]
 
@@ -15,44 +10,16 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up JDK 11
-      - uses: actions/setup-java@v2
+        uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Cache .gradle/caches
-      - uses: actions/cache@v1
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: ${{ runner.os }}-gradle-
+      - name: Start Logging
+        run: echo Gradle Build Test Start
 
-      - name: Cache .gradle/wrapper
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-wrapper-
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-        - name: Cache .gradle/caches
-        - uses: actions/cache@v1
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: ${{ runner.os }}-gradle-
-
-        - name: Cache .gradle/wrapper
-        - uses: actions/cache@v1
-          with:
-            path: ~/.gradle/wrapper
-            key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/*.gradle') }}
-            restore-keys: ${{ runner.os }}-gradle-wrapper-
-
-        - name: Start Logging
-          run: echo Gradle Build Test Start
-
-        - name: Grant execute permission for gradlew
-          run: chmod +x gradlew
-
-        - name: Test with Gradle
-          run: ./gradlew --info test
+      - name: Test with Gradle
+        run: ./gradlew --info test
