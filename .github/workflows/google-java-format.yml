@@ -16,4 +16,3 @@ jobs:
           # --replace : 포매팅을 출력하지 않고 파일들에 적용
           commitMessage: "Format : Google Java Format"
           # 디폴트 커밋 메시지인 "Google Java Format" 을 커밋 메시지 컨벤션에 맞게 적용
-
