@@ -7,20 +7,15 @@ on:
     types: [ opened, synchronize, reopened ]
 jobs:
   sonarqube:
-    runs-on: ubuntu-latest
-    env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    name: SonarQube
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - uses: philips-software/sonar-scanner-action@<version>
         with:
-          fetch-depth: 0
-
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-
-      - name: SonarQube Quality Gate check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        # Force to fail step after specific time
-        timeout-minutes: 5
+          token: ${{ secrets.SONAR_TOKEN }}
+          projectKey: project.key.from.sonar.qube
+          baseDir: .
+          url: ${{ secrets.SONAR_HOST_URL }}
+          enablePullRequestDecoration: true
+          isCommunityEdition: true
 
