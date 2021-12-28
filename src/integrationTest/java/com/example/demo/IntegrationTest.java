@@ -7,9 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class IntegrationTest {
 
-    @Test
-    void testIntegrations() {
-        Assertions.assertEquals(2, 2);
-        System.out.println("------------------------Integration");
-    }
+  @Test
+  void testIntegrations() {
+    Assertions.assertEquals(2, 2);
+  }
 }
