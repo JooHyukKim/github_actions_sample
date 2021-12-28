@@ -11,7 +11,8 @@ jobs:
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      projectKey: "f4af627e19ec8a980d527d3971d6e5bec20fd373"
+      SONAR_PROJECT_KEY: f4af627e19ec8a980d527d3971d6e5bec20fd373
+      sonar.projectKey: f4af627e19ec8a980d527d3971d6e5bec20fd373
     steps:
       - uses: actions/checkout@v2
         with:
