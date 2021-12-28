@@ -10,7 +10,7 @@ jobs:
     name: SonarQube
     runs-on: ubuntu-latest
     steps:
-      - run: echo pwd
+      - run: pwd
       - run: echo "--------------------"
       - run: echo "--------------------"
       - run: echo "--------------------"
