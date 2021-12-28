@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.SONAR_TOKEN }}
           projectKey: project.key.from.sonar.qube
           projectName: inbobwetrust
-          baseDir: /github/workspace
+          baseDir: /home/runner/work/github_actions_sample/github_actions_sample
           url: ${{ secrets.SONAR_HOST_URL }}
           enablePullRequestDecoration: true
           isCommunityEdition: true
