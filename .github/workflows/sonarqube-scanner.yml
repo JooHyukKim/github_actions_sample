@@ -10,12 +10,18 @@ jobs:
     name: SonarQube
     runs-on: ubuntu-latest
     steps:
+      - run: echo pwd
+      - run: echo "--------------------"
+      - run: echo "--------------------"
+      - run: echo "--------------------"
+      - run: echo "--------------------"
+      - run: echo "--------------------"
       - uses: philips-software/sonar-scanner-action@v1.3.0
         with:
           token: ${{ secrets.SONAR_TOKEN }}
           projectKey: project.key.from.sonar.qube
           projectName: inbobwetrust
-          baseDir: .
+          baseDir: /github/workspace
           url: ${{ secrets.SONAR_HOST_URL }}
           enablePullRequestDecoration: true
           isCommunityEdition: true
