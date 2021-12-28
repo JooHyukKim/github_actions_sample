@@ -14,7 +14,7 @@ jobs:
       SONAR_PROJECT_KEY: f4af627e19ec8a980d527d3971d6e5bec20fd373
       sonar.projectKey: f4af627e19ec8a980d527d3971d6e5bec20fd373
     with:
-      projectKey: f4af627e19ec8a980d527d3971d6e5bec20fd373
+      projectKey: "f4af627e19ec8a980d527d3971d6e5bec20fd373"
     steps:
       - uses: actions/checkout@v2
         with:
