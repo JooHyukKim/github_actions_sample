@@ -26,4 +26,9 @@ public class SimpleService {
   public int untestedMethod1() {
     return Integer.MIN_VALUE;
   }
+
+
+  public int untestedMethod2() {
+    return Integer.MIN_VALUE;
+  }
 }
