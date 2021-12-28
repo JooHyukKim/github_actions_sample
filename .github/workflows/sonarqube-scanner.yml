@@ -14,6 +14,7 @@ jobs:
         with:
           token: ${{ secrets.SONAR_TOKEN }}
           projectKey: project.key.from.sonar.qube
+          projectName: inbobwetrust
           baseDir: .
           url: ${{ secrets.SONAR_HOST_URL }}
           enablePullRequestDecoration: true
