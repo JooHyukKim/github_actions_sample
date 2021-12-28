@@ -20,13 +20,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
+          projectKey: "f4af627e19ec8a980d527d3971d6e5bec20fd373"
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@master
         # Force to fail step after specific time
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectKey: "f4af627e19ec8a980d527d3971d6e5bec20fd373"
-
+      
