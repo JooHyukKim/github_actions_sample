@@ -1,28 +1,24 @@
-name: Build
-on:
-  push:
-    branches:
-      - master # or the name of your main branch
+name: Sonarqube
+on: [ push ]
   pull_request:
     types: [ opened, synchronize, reopened ]
 jobs:
   sonarqube:
-    name: SonarQube
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
-      - run: echo "--------------------"
-      - run: echo "--------------------"
-      - run: echo "--------------------"
-      - run: echo "--------------------"
-      - run: echo "--------------------"
-      - uses: philips-software/sonar-scanner-action@v1.3.0
+      - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.SONAR_TOKEN }}
-          projectKey: project.key.from.sonar.qube
-          projectName: inbobwetrust
-          projectBaseDir: /home/runner/work/github_actions_sample/github_actions_sample
-          url: ${{ secrets.SONAR_HOST_URL }}
-          enablePullRequestDecoration: true
-          isCommunityEdition: true
-
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+        # Triggering SonarQube analysis as results of it are required by Quality Gate check
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        # Force to fail step after specific time
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.ADAM_SONAR_TOKEN }}
