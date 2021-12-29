@@ -1,7 +1,5 @@
 name: Sonarqube
 on: [ push ]
-  pull_request:
-    types: [ opened, synchronize, reopened ]
 jobs:
   sonarqube:
     runs-on: ubuntu-latest
