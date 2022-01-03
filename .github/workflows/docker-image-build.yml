@@ -3,6 +3,10 @@ name: Docker Image Build
 on: [ push ]
 jobs:
   build:
+    strategy:
+      fail-fast: false
+      matrix:
+        IMAGE_BUILD_DIR_PAIR: [ [ beanskobe/delivery, ./delivery ], [ beanskobe/order, ./order ] ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,10 +36,10 @@ jobs:
 
       - name: Build Docker image
         if: success()
-        run: docker image build -t beanskobe/delivery:${GITHUB_SHA::7} ./delivery
+        run: docker image build -t ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:${GITHUB_SHA::7} ${{matrix.IMAGE_BUILD_DIR_PAIR[1]}}
 
       - name: Push to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/delivery:${GITHUB_SHA::7}
+          args: push ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:${GITHUB_SHA::7}
