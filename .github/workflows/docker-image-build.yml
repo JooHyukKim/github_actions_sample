@@ -38,4 +38,4 @@ jobs:
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push tester_spring:0.1
+          args: push beanskobe/tester_spring:0.1
