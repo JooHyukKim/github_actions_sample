@@ -20,6 +20,6 @@ public class IntegrationTest {
   @Test
   void setEvenNumber() {
     Assertions.assertThrows(
-      IllegalArgumentException.class, () -> simpleService.setEvenNumber(3));
+        IllegalArgumentException.class, () -> simpleService.setEvenNumber(3));
   }
 }
