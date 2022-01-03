@@ -2,7 +2,8 @@ version: '3'
 services:
   tester_spring:
     build:
-      context: ./tester_spring
+      context: .
+      dockerfile: ./tester_spring
     image: beanskobe/tester_spring
 #  build-2:
 #    build:
