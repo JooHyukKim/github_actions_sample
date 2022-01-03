@@ -38,7 +38,8 @@ jobs:
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring
+          args: image push --all-tags beanskobe/tester_spring
+
 
       - name: Push to docker registry
         if: success()
