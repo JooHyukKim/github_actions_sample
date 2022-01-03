@@ -1,0 +1,10 @@
+version: '3'
+services:
+  delivery:
+    build:
+      context: ./order
+    image: beanskobe/delivery:${TAG_VERSION}
+  order:
+    build:
+      context: ./delivery
+    image: beanskobe/order:${TAG_VERSION}

@@ -3,6 +3,10 @@ name: Docker Image Build
 on: [ push ]
 jobs:
   build:
+    strategy:
+      fail-fast: false
+      matrix:
+        IMAGE_BUILD_DIR_PAIR: [ [ beanskobe/delivery, ./delivery ], [ beanskobe/order, ./order ] ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,19 +27,28 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Login to docker hub
+      - name: 로그인 to Docker
         if: success()
         uses: actions-hub/docker/login@master
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: Build image
+      - name: 도커 이미지빌드 w/ version
         if: success()
-        run: docker image build -t beanskobe/tester_spring:0.1 .
-
-      - name: Push to docker registry
+        run: docker image build -t ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:${GITHUB_SHA::7} ${{matrix.IMAGE_BUILD_DIR_PAIR[1]}}
+      - name: 도커 이미지 push w/ version
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring:0.1
+          args: push ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:${GITHUB_SHA::7}
+
+      - name: 도커 이미지빌드 latest
+        if: success()
+        run: docker image build -t ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:latest ${{matrix.IMAGE_BUILD_DIR_PAIR[1]}}
+      - name: 도커 이미지 push latest
+        if: success()
+        uses: actions-hub/docker@master
+        with:
+          args: push ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:latest
+
