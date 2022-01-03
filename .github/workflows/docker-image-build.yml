@@ -32,15 +32,9 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker-compose build --pull -t beanskobe/tester_spring:${GITHUB_SHA::7} -t beanskobe/tester_spring:latest
+        run: docker-compose build -t beanskobe/tester_spring:${GITHUB_SHA::7}
 
-      - name: Push Version to docker registry
-        if: success()
-        uses: actions-hub/docker@master
-        with:
-          args: push beanskobe/tester_spring:latest
-
-      - name: Push Latest to docker registry
+      - name: Push SHA to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
