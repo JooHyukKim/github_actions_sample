@@ -32,7 +32,7 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker build -t tester_spring:latest .
+        run: docker image build -t tester_spring:latest .
 
       - name: Push to docker registry
         if: success()
