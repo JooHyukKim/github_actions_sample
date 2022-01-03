@@ -44,7 +44,7 @@ jobs:
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring:latest
+          args: push beanskobe/tester_spring:${GITHUB_SHA::7}
 
 
 
