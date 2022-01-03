@@ -38,7 +38,7 @@ jobs:
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring
+          args: push beanskobe/tester_spring:${GITHUB_SHA::7} beanskobe/tester_spring:latest
 
       - name: Push to docker registry
         if: success()
