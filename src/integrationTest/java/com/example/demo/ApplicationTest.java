@@ -7,11 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class ApplicationTest {
-  @Autowired
-  DemoApplication demoApplication;
+    @Autowired DemoApplication demoApplication;
 
-  @Test
-  void application() {
-    Assertions.assertDoesNotThrow(() -> DemoApplication.main(new String[]{"hi", "hi"}));
-  }
+    @Test
+    void application() {
+        Assertions.assertDoesNotThrow(() -> DemoApplication.main(new String[] {"hi", "hi"}));
+    }
 }
