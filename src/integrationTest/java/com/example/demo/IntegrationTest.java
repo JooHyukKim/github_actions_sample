@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.service.SimpleService;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class IntegrationTest {
 
   @Test
   void setEvenNumber() {
-//    Assertions.assertThrows(IllegalArgumentException.class, () -> simpleService.setEvenNumber(3));
+    Assertions.assertThrows(
+        IllegalArgumentException.class, () -> simpleService.setEvenNumber(3));
   }
 }
