@@ -32,7 +32,7 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker-compose build --build-arg TAG=${GITHUB_SHA::7}
+        run: TAG=${GITHUB_SHA::7} docker-compose build --build-arg
 
       - name: Push SHA to docker registry
         if: success()
