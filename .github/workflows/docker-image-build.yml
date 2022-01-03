@@ -32,15 +32,13 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker-compose build -t beanskobe/tester_spring:${GITHUB_SHA::7}
+        run: docker-compose build --build-arg TAG=${GITHUB_SHA::7}
 
       - name: Push SHA to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
           args: push beanskobe/tester_spring:${GITHUB_SHA::7}
-
-
 
       - name: Push to docker registry
         if: success()
