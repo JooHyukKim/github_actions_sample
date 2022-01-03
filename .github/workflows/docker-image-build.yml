@@ -34,11 +34,18 @@ jobs:
         if: success()
         run: docker-compose build --pull -t beanskobe/tester_spring:0.3 -t beanskobe/tester_spring:latest
 
-      - name: Push to docker registry
+      - name: Push Version to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring
+          args: push beanskobe/tester_spring:0.3
+
+      - name: Push Latest to docker registry
+        if: success()
+        uses: actions-hub/docker@master
+        with:
+          args: push beanskobe/tester_spring:latest
+
 
 
       - name: Push to docker registry
