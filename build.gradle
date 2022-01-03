@@ -6,6 +6,7 @@ plugins {
     id 'jacoco'
 }
 
+
 sonarqube {
     properties {
         property "sonar.projectKey", "inbobwetrust"
@@ -15,6 +16,7 @@ sonarqube {
 group = 'com.example'
 version = '1'
 sourceCompatibility = '11'
+buildDir = new File(rootProject.projectDir, "tester_spring/build/" + project.name)
 
 configurations {
     compileOnly {
