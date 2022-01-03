@@ -32,10 +32,10 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker image build -t beanskobe/tester_spring:0.1 .
+        run: docker image build -t beanskobe/tester_spring:${GITHUB_SHA::7} ./delivery
 
       - name: Push to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring:0.1
+          args: push beanskobe/tester_spring:${GITHUB_SHA::7}
