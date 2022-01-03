@@ -32,7 +32,7 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker image build -t tester_spring:0.1 .
+        run: docker image build -t beanskobe/tester_spring:0.1 .
 
       - name: Push to docker registry
         if: success()
