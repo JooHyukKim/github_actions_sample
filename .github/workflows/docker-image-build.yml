@@ -30,12 +30,12 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: Build image
+      - name: Build Docker image
         if: success()
-        run: docker image build -t beanskobe/tester_spring:${GITHUB_SHA::7} ./delivery
+        run: docker image build -t beanskobe/delivery:${GITHUB_SHA::7} ./delivery
 
       - name: Push to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push beanskobe/tester_spring:${GITHUB_SHA::7}
+          args: push beanskobe/delivery:${GITHUB_SHA::7}
