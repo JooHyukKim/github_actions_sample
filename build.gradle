@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id "org.sonarqube" version "3.3"
+    id 'jacoco'
 }
 
 sonarqube {
@@ -48,13 +49,84 @@ configurations {
 }
 
 task integrationTest(type: Test) {
+    description = 'Delivery-Info-Serivce : Integraion Test'
+    group = 'verification'
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
     useJUnitPlatform()
+    shouldRunAfter(tasks.named('test'))
+    jacoco {
+        include '**'
+    }
 }
 
+integrationTest {
+    jacoco {
+        enabled = true
+    }
+}
 check.dependsOn integrationTest
 
 test {
     useJUnitPlatform()
+}
+
+
+jacocoTestReport {
+    dependsOn test
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+    jacocoTestReport {
+        reports {
+            xml.required = false
+            csv.required = false
+            html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        }
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = true
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
+
+task JacocoLineCoverageReport(type: JacocoReport) {
+    group 'verification'
+    description 'Runs tests with coverage'
+
+    dependsOn(':test',
+            ':integrationTest',
+            ':jacocoTestReport',
+            ':jacocoTestCoverageVerification')
+
+    tasks['jacocoTestReport'].mustRunAfter(tasks['test'])
+    tasks['jacocoTestCoverageVerification'].mustRunAfter(tasks['jacocoTestReport'])
+}
+
+apply plugin: 'idea'
+idea {
+    module {
+        testSourceDirs += project.sourceSets.integrationTest.java.srcDirs
+        testSourceDirs += project.sourceSets.integrationTest.resources.srcDirs
+    }
 }
