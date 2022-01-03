@@ -44,12 +44,11 @@ jobs:
           args: push ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:${GITHUB_SHA::7}
 
       - name: 도커 이미지빌드 latest
-          if: success()
-          run: docker image build -t ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:latest ${{matrix.IMAGE_BUILD_DIR_PAIR[1]}}
-         
+        if: success()
+        run: docker image build -t ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:latest ${{matrix.IMAGE_BUILD_DIR_PAIR[1]}}
       - name: 도커 이미지 push latest
-          if: success()
-          uses: actions-hub/docker@master
-          with:
-            args: push ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:latest
+        if: success()
+        uses: actions-hub/docker@master
+        with:
+          args: push ${{matrix.IMAGE_BUILD_DIR_PAIR[0]}}:latest
 
