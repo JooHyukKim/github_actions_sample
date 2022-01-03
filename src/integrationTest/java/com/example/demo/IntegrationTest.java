@@ -10,6 +10,5 @@ public class IntegrationTest {
     @Test
     void testIntegrations() {
         Assertions.assertEquals(2, 2);
-        System.out.println("------------------------Integration");
     }
 }
