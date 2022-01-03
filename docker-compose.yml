@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./tester_spring/Dockerfile
-    image: beanskobe/tester_spring:0.2
+    image: beanskobe/tester_spring
 #  build-2:
 #    build:
 #      context: ./build-2
