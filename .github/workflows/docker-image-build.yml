@@ -43,4 +43,4 @@ jobs:
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push JooHyukKim/github_actions_sample:repository
+          args: push beanskobe:tester_spring
