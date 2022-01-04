@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        TEST_COMMAND: [ --info delivery:test, --info :delivery:integrationTest ]
+        TEST_COMMAND: [ '--info delivery:test', '--info :order:test' ]
     steps:
       - uses: actions/checkout@v2
 
