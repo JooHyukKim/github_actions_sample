@@ -2,12 +2,13 @@ name: Docker Image Build
 
 on: [ push ]
 jobs:
+
   test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        TEST_COMMAND: [ '--info delivery:test', '--info :delivery:integrationTest' ]
+        TEST_COMMAND: [ --info delivery:test, --info :delivery:integrationTest ]
     steps:
       - uses: actions/checkout@v2
 
