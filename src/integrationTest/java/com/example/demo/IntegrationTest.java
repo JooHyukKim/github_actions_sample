@@ -8,17 +8,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IntegrationTest {
-    @Autowired SimpleService simpleService;
+  @Autowired SimpleService simpleService;
 
-    @Test
-    void testIntegrations() {
-        Assertions.assertEquals(2, 2);
-        System.out.println("------------------------Integration");
-    }
+  @Test
+  void testIntegrations() {
+    Assertions.assertEquals(2, 2);
+    System.out.println("------------------------Integration");
+  }
 
-    @Test
-    void setEvenNumber() {
-        Assertions.assertThrows(
-                IllegalArgumentException.class, () -> simpleService.setEvenNumber(3));
-    }
+  @Test
+  void setEvenNumber() {
+    Assertions.assertThrows(IllegalArgumentException.class, () -> simpleService.setEvenNumber(3));
+  }
 }
